@@ -1,7 +1,7 @@
 import sys
 import xbmcaddon
 
-__addon__ = sys.modules["__main__"].__addon__
+__addon__ = xbmcaddon.Addon(id='script.xbmc.hue.ambilight')
 
 
 class settings():

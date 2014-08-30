@@ -6,7 +6,7 @@ import colorsys
 import os
 import math
 
-__addon__ = xbmcaddon.Addon()
+__addon__ = xbmcaddon.Addon(id='script.xbmc.hue.ambilight')
 __cwd__ = __addon__.getAddonInfo('path')
 __resource__ = xbmc.translatePath(os.path.join(__cwd__, 'resources', 'lib'))
 

@@ -45,35 +45,35 @@ monitor = MyMonitor()
 
 class MyPlayer(xbmc.Player):
   duration = 0
-  playingvideo = None
+  playingAudio = None
 
   def __init__(self):
     xbmc.Player.__init__(self)
   
   def onPlayBackStarted(self):
-    if self.isPlayingVideo():
-      self.playingvideo = True
+    if self.isPlayingAudio():
+      self.playingAudio = True
       self.duration = self.getTotalTime()
       state_changed("started", self.duration)
 
   def onPlayBackPaused(self):
-    if self.isPlayingVideo():
-      self.playingvideo = False
+    if self.isPlayingAudio():
+      self.playingAudio = False
       state_changed("paused", self.duration)
 
   def onPlayBackResumed(self):
-    if self.isPlayingVideo():
-      self.playingvideo = True
+    if self.isPlayingAudio():
+      self.playingAudio = True
       state_changed("resumed", self.duration)
 
   def onPlayBackStopped(self):
-    if self.playingvideo:
-      self.playingvideo = False
+    if self.playingAudio:
+      self.playingAudio = False
       state_changed("stopped", self.duration)
 
   def onPlayBackEnded(self):
-    if self.playingvideo:
-      self.playingvideo = False
+    if self.playingAudio:
+      self.playingAudio = False
       state_changed("stopped", self.duration)
 
 class Hue:
@@ -378,7 +378,7 @@ def run():
 
       capture.waitForCaptureStateChangeEvent(1000/60)
       if capture.getCaptureState() == xbmc.CAPTURE_STATE_DONE:
-        if player.playingvideo:
+        if player.playingAudio:
           screen = Screenshot(capture.getImage(), capture.getWidth(), capture.getHeight())
           hsvRatios = screen.spectrum_hsv(screen.pixels, screen.capture_width, screen.capture_height)
           if hue.settings.light == 0:
